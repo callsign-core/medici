@@ -261,9 +261,9 @@ put_get_random_unit() ->
     ElementCount = get_random_count(),
     PutVals = lists:foldl(fun(_Seq, Acc) ->
 				  KeySize = random:uniform(1024),
-				  Key = crypto:rand_bytes(KeySize),
+				  Key = crypto:strong_rand_bytes(KeySize),
 				  ValSize = random:uniform(65536),
-				  Val = crypto:rand_bytes(ValSize),
+				  Val = crypto:strong_rand_bytes(ValSize),
 				  ok = ?MODULE:put(Key, Val),
 				  [{Key, Val} | Acc]
 			  end, [], lists:seq(1, ElementCount)),
